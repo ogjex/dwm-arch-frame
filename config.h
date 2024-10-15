@@ -27,12 +27,13 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      		instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     		NULL,       NULL,       0,            1,           0 },
+	/* class      		instance    title       tags mask     isfloating   	CenterThisWindow?	monitor */
+	{ "Alacritty", 		NULL,       NULL,       0,            1,           	1,			0 },
+	{ "Gimp",     		NULL,       NULL,       0,            1,           	0,			0 },
 	/* 1 - tinkering and system tools*/	
 	/* 2 - browsing*/	
-	{ "firefox",  		NULL,       NULL,       1 << 1,       0,           0 },
-	{ "brave-browser",  	NULL,       NULL,       1 << 1,       0,           0 },
+	{ "firefox",  		NULL,       NULL,       1 << 1,       0,           	0,			0 },
+	{ "brave-browser",  	NULL,       NULL,       1 << 1,       0,           	0,			0 },
 	/* 3 - email*/	
 	/* 4 - development, eg. Zellij*/	
 	/* 5 - writing*/	
