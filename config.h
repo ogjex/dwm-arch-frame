@@ -29,8 +29,16 @@ static const Rule rules[] = {
 	 */
 	/* class      		instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     		NULL,       NULL,       0,            1,           0 },
+	/* 1 - tinkering and system tools*/	
+	/* 2 - browsing*/	
 	{ "firefox",  		NULL,       NULL,       1 << 1,       0,           0 },
 	{ "brave-browser",  	NULL,       NULL,       1 << 1,       0,           0 },
+	/* 3 - email*/	
+	/* 4 - development, eg. Zellij*/	
+	/* 5 - writing*/	
+	/* browsing*/	
+	/* browsing*/	
+	/* browsing*/	
 };
 
 /* layout(s) */
