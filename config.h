@@ -41,16 +41,18 @@ static const Rule rules[] = {
 	 */
 	/* class      		instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     		NULL,       NULL,       0,            1,           -1 },
-	/* 1 - terminal and system tools*/	
-	/* 2 - browsing*/	
+	/* 1 - terminal and system tools */	
+	/* 2 - browsing */	
 	{ "firefox",  		NULL,       NULL,       1 << 1,       0,           -1 },
-	{ "brave-browser",  	NULL,       NULL,       1 << 3,       0,           -1 },
 	/* 3 - email*/	
-	/* 4 - development, eg. Zellij*/	
-	/* 5 - writing*/	
-	/* browsing*/	
-	/* browsing*/	
-	/* browsing*/	
+	{ "Brave-browser",  	NULL,       NULL,       1 << 2,       0,           -1 },
+	/* 4 - writing*/	
+	{ "obsidian",	  	NULL,       NULL,       1 << 3,       0,           -1 },
+	/* 5 - Reference management */	
+	{ "Zotero",	  	NULL,       NULL,       1 << 4,       0,           -1 },
+	/* 6 - development, eg. Zellij */	
+	/* 7 - Virtual Machines */	
+	/* 8 - unused */	
 };
 
 /* layout(s) */
