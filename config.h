@@ -26,6 +26,7 @@ static const char *colors[][3]      = {
 
 static const char *const autostart[] = {
 	"alacritty", NULL,
+	"bash", "-c", "bto", NULL,
 	NULL /* terminate */
 };
 
@@ -68,18 +69,19 @@ static int attachbelow 		= 1;    /* 1 means attach after the currently active wi
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
-	{ "[M]",      monocle },
-	{ "[@]",      spiral },
-	{ "[\\]",     dwindle },
-	{ "H[]",      deck },
+	//{ "[M]",      monocle },
+	//{ "[@]",      spiral },
+	//{ "[\\]",     dwindle },
+	//{ "H[]",      deck },
 	{ "TTT",      bstack },
 	{ "===",      bstackhoriz },
-	{ "HHH",      grid },
+	//{ "HHH",      grid },
 	{ "###",      nrowgrid },
-	{ "---",      horizgrid },
-	{ ":::",      gaplessgrid },
-	{ "|M|",      centeredmaster },
-	{ ">M>",      centeredfloatingmaster },
+	//{ "---",      horizgrid },
+	//{ ":::",      gaplessgrid },
+	{ "MM:",      tilewide },
+	{ ":M:",      centeredmaster },
+	//{ ">M>",      centeredfloatingmaster },
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ NULL,       NULL },
 };
