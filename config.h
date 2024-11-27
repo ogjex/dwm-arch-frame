@@ -45,15 +45,17 @@ static const Rule rules[] = {
 	/* 1 - terminal and system tools */	
 	/* 2 - browsing */	
 	{ "firefox",  		NULL,       NULL,       1 << 1,       0,           -1 },
-	/* 3 - email*/	
+	/* 3 - email, calendars and meetings */	
 	{ "Brave-browser",  	NULL,       NULL,       1 << 2,       0,           -1 },
 	/* 4 - writing*/	
 	{ "obsidian",	  	NULL,       NULL,       1 << 3,       0,           -1 },
 	/* 5 - Reference management */	
 	{ "Zotero",	  	NULL,       NULL,       1 << 4,       0,           -1 },
-	/* 6 - development, eg. Zellij */	
+	/* 6 - development, */	
 	/* 7 - Virtual Machines */	
 	/* 8 - unused */	
+	/* 9 - background apps with helpers */	
+	{ "1password",	  	NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
 /* layout(s) */
