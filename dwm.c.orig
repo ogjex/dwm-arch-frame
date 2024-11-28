@@ -243,6 +243,7 @@ static void updatetitle(Client *c);
 static void updatewindowtype(Client *c);
 static void updatewmhints(Client *c);
 static void view(const Arg *arg);
+static void warp(const Client *c);
 static void viewnext(const Arg *arg);
 static void viewprev(const Arg *arg);
 static Client *wintoclient(Window w);
@@ -1230,6 +1231,7 @@ manage(Window w, XWindowAttributes *wa)
 	if (c && c->mon == selmon)
 		XWarpPointer(dpy, None, c->win, 0, 0, 0, 0, c->w/2, c->h/2);
 	focus(NULL);
+	warp(selmon->sel);
 }
 
 void
@@ -1574,6 +1576,8 @@ restack(Monitor *m)
 				wc.sibling = c->win;
 			}
 	}
+	if (m == selmon && (m->tagset[m->seltags] & m->sel->tags) && m->lt[m->sellt]->arrange != &monocle)
+		warp(m->sel);
 	XSync(dpy, False);
 	while (XCheckMaskEvent(dpy, EnterWindowMask, &ev));
 }
@@ -2385,7 +2389,29 @@ viewprev(const Arg *arg)
 {
 	view(&(const Arg){.ui = prevtag()});
 }
- 
+
+void
+warp(const Client *c)
+{
+	int x, y;
+
+	if (!c) {
+		XWarpPointer(dpy, None, root, 0, 0, 0, 0, selmon->wx + selmon->ww / 2, selmon->wy + selmon->wh / 2);
+		return;
+	}
+
+	if (!getrootptr(&x, &y) ||
+		(x > c->x - c->bw &&
+		 y > c->y - c->bw &&
+		 x < c->x + c->w + c->bw*2 &&
+		 y < c->y + c->h + c->bw*2) ||
+		(y > c->mon->by && y < c->mon->by + bh) ||
+		(c->mon->topbar && !y))
+		return;
+
+	XWarpPointer(dpy, None, c->win, 0, 0, 0, 0, c->w / 2, c->h / 2);
+}
+
 Client *
 wintoclient(Window w)
 {

@@ -32,8 +32,9 @@ static const char *const autostart[] = {
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-static const char *tagsalt[] = { "", "󰖟", "󰻣", "󱓩", "󱍻", "󰚗", "", "󰄯", "󰄯" };
+static const char *tagsalt[] = { "", "󰖟", "󰻣", "󱓩", "󱍻", "󰚗", "", "󰄯", "󰀿" };
 static const int momentaryalttags = 1; /* 1 means alttags will show only when key is held down*/
+static const int taglayouts[] = { 0, 1, 1, 3, 3, 3, 0, 0, 5 };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -71,9 +72,9 @@ static int attachbelow 		= 1;    /* 1 means attach after the currently active wi
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
-    { ":M:",      centeredmaster },
-    { "MM:",      tilewide },
-    { "[M]",      monocle },
+	{ ":M:",      centeredmaster },
+	{ "MM:",      tilewide },
+	{ "[M]",      monocle },
 	//{ "[@]",      spiral },
 	//{ "[\\]",     dwindle },
 	//{ "H[]",      deck },
