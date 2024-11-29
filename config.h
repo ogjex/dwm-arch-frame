@@ -26,7 +26,7 @@ static const char *colors[][3]      = {
 
 static const char *const autostart[] = {
 	"alacritty", NULL,
-	"bash", "-c", "bto", NULL,
+	"1password", NULL,
 	NULL /* terminate */
 };
 
@@ -46,7 +46,7 @@ static const Rule rules[] = {
 	/* 1 - terminal and system tools */	
 	/* 2 - browsing */	
 	{ "firefox",  		NULL,       NULL,       1 << 1,       0,           -1 },
-	/* 3 - email, calendars and meetings */	
+	/* 3 - email*/	
 	{ "Brave-browser",  	NULL,       NULL,       1 << 2,       0,           -1 },
 	/* 4 - writing*/	
 	{ "obsidian",	  	NULL,       NULL,       1 << 3,       0,           -1 },
@@ -57,10 +57,13 @@ static const Rule rules[] = {
 	/* 8 - unused */	
 	/* 9 - background apps with helpers */	
 	{ "1password",	  	NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "1password",	  	NULL,       "Lock Screen - 1Password",       1 << 8,       0,           -1 },
+	{ "1Password",	  	NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "1Password",	  	NULL,       "Lock Screen - 1Password",       1 << 8,       0,           -1 },
 };
 
 /* layout(s) */
-static const float mfact     	= 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact     	= 0.60; /* factor of master area size [0.05..0.95] */
 static const int nmaster     	= 1;    /* number of clients in master area */
 static const int resizehints 	= 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; 	/* 1 will force focus on the fullscreen window */
@@ -105,11 +108,31 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 
+static const char *copycmd[]  = { "dmenu_cliphist", "add", NULL };
+static const char *cliphistcmd[]  = { "dmenu_cliphist", "sel", NULL };
+static const char *devcmd[]  = { "zellij", NULL };
+static const char *browsecmd[]  = { "firefox", NULL };
+static const char *coordcmd[]  = { "brave", NULL };
+static const char *notecmd[]  = { "obsidian", NULL };
+static const char *refcmd[]  = { "zotero", NULL };
+static const char *pwcmd[]  = { "1password", NULL };
+
 #include "movestack.c"
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,	                XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,			XK_c,      spawn,          {.v = copycmd } },
+	{ MODKEY|ShiftMask,		XK_c,      spawn,          {.v = cliphistcmd } },
+	{ MODKEY|ShiftMask,		XK_F1,     spawn,          {.v = devcmd } },
+	{ MODKEY|ShiftMask,	        XK_F2,     spawn,          {.v = browsecmd } },
+	{ MODKEY|ShiftMask,	        XK_F3,     spawn,          {.v = coordcmd } },
+	{ MODKEY|ShiftMask,             XK_F4,     spawn,          {.v = notecmd } },
+	{ MODKEY|ShiftMask,		XK_F5,     spawn,          {.v = refcmd } },
+	{ MODKEY|ShiftMask,		XK_F6,     spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,		XK_F7,     spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,		XK_F8,     spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,		XK_F9,     spawn,          {.v = pwcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_b,	   toggleAttachBelow, {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -139,7 +162,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_w,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[7]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ControlMask,		XK_comma,  cyclelayout,    {.i = -1 } },
 	{ MODKEY|ControlMask,           XK_period, cyclelayout,    {.i = +1 } },
