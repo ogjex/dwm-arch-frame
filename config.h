@@ -109,6 +109,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "alacritty", NULL };
 
 static const char *copycmd[]  = { "dmenu_cliphist", "add", NULL };
+static const char *pastecmd[]  = { "xclip", "-o", NULL };
 static const char *cliphistcmd[]  = { "dmenu_cliphist", "sel", NULL };
 static const char *devcmd[]  = { "zellij", NULL };
 static const char *browsecmd[]  = { "firefox", NULL };
@@ -116,13 +117,20 @@ static const char *coordcmd[]  = { "brave", NULL };
 static const char *notecmd[]  = { "obsidian", NULL };
 static const char *refcmd[]  = { "zotero", NULL };
 static const char *pwcmd[]  = { "1password", NULL };
+static const char *mutecmd[]  = { "volume", "mute", NULL };
+static const char *incaudiocmd[]  = { "volume", "up", NULL };
+static const char *decaudiocmd[]  = { "volume", "down", NULL };
+static const char *incbrightcmd[]  = { "backlight", "up", NULL };
+static const char *decbrightcmd[]  = { "backlight", "down", NULL };
 
 #include "movestack.c"
+#include <X11/XF86keysym.h>
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,	                XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,			XK_c,      spawn,          {.v = copycmd } },
+	{ MODKEY,			XK_v,      spawn,          {.v = pastecmd } },
 	{ MODKEY|ShiftMask,		XK_c,      spawn,          {.v = cliphistcmd } },
 	{ MODKEY|ShiftMask,		XK_F1,     spawn,          {.v = devcmd } },
 	{ MODKEY|ShiftMask,	        XK_F2,     spawn,          {.v = browsecmd } },
@@ -179,6 +187,11 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Right,  tagtonext,      {0} },
 	{ MODKEY|ShiftMask,             XK_Left,   tagtoprev,      {0} },
 	{ MODKEY,                       XK_n,      togglealttag,   {0} },
+	{ 0,                            XF86XK_AudioMute,           spawn,    {.v = mutecmd } },
+	{ 0,                            XF86XK_AudioRaiseVolume,    spawn,    {.v = incaudiocmd } },
+	{ 0,                            XF86XK_AudioLowerVolume,    spawn,    {.v = decaudiocmd } },
+	{ 0,                            XF86XK_MonBrightnessUp,     spawn,    {.v = incbrightcmd } },
+	{ 0,                            XF86XK_MonBrightnessDown,   spawn,    {.v = decbrightcmd } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
